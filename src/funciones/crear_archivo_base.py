@@ -4,7 +4,7 @@ from pathlib import Path
 def crear_individuo(archivo_individuos):
     """Recibe ubicacion donde crear el archivo maestro de individuos y el Path del detalle para agregar el header"""
     
-    detalle_i = Path("archivos") / "usu_individuoT324.txt"
+    detalle_i = Path("archivos") / "usu_individualT324.txt"
     archivo_i = open(archivo_individuos, 'w')
     with open(detalle_i) as archivo:
         csv_reader = csv.reader(archivo)
