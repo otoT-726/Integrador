@@ -30,3 +30,4 @@ except FileNotFoundError:
 
 # Seccion a:
 #addColumna(archivo_individuos) punto 3
+#addNivelED(archivo_individuos) punto 4
