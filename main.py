@@ -5,6 +5,8 @@ from src.utils.rutas import project_path, data_path
 from src.utils.AgregarColumnaNombres import addColumna
 from src.utils.AgregarColumnaNivelED import addNivelED
 from src.utils.condicion_laboral import agregar_condicion_laboral
+from src.utils.columna_tipocasa import columna_tipo_de_casa
+from src.utils.columna_universitario import columna_universitario_numerica
 
 #Path configurable de detalle para agregar archivos al maestro
 
@@ -35,3 +37,5 @@ except FileNotFoundError:
 
 #agregar_condicion_laboral(archivo_individuos) #punto 5
 #agregar_condicion_laboral(archivo_hogares) #punto 5
+#columna_universitario_numerica(archivo_individuos) #punto 6
+#columna_tipo_de_casa(archivo_hogares) #punto 7
