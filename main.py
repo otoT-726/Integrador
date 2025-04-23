@@ -7,7 +7,7 @@ from src.utils.AgregarColumnaNivelED import addNivelED
 from src.utils.condicion_laboral import agregar_condicion_laboral
 from src.utils.columna_tipocasa import columna_tipo_de_casa
 from src.utils.columna_universitario import columna_universitario_numerica
-
+from src.utils.materialTech import agregar_material_techumbre_y_densidad
 #Path configurable de detalle para agregar archivos al maestro
 
 detalle_i = data_path / "usu_individual_T24.txt"
@@ -39,3 +39,4 @@ except FileNotFoundError:
 #agregar_condicion_laboral(archivo_hogares) #punto 5
 #columna_universitario_numerica(archivo_individuos) #punto 6
 #columna_tipo_de_casa(archivo_hogares) #punto 7
+agregar_material_techumbre_y_densidad(archivo_hogares) #punto 8
