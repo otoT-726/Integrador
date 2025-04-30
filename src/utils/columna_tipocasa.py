@@ -1,6 +1,6 @@
 import csv
 
-index_miembros = 64
+index_miembros = "IX_Tot" #64
 
 
 def columna_tipo_de_casa(file): 
@@ -12,9 +12,9 @@ def columna_tipo_de_casa(file):
         filas = []  # Me guardo las filas procesadas
         
         for line in csv_reader:
-            if int(line[index_miembros]) == 1:
+            if line[index_miembros] == "1":
                 line.append('Unipersonal')
-            elif int(line[index_miembros]) >= 2 and int(line[index_miembros]) <= 4:
+            elif line[index_miembros] >= "2" and line[index_miembros] <= "4":
                 line.append('Nuclear')
             else:
                 line.append('Extendido')
