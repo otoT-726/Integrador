@@ -6,8 +6,8 @@ import csv
 # 2 SI NO ES MAYOR O NO COMPLETO LA UNIVERSIDAD
 # 0 ULTIMO CASO SI NO TIENE NINGUNA DE LAS ANTERIORES
 
-index_nivelEd = 26
-index_edad = 13
+index_nivelEd = "NIVEL_ED" #26
+index_edad = "CH06" #13
 
 def columna_universitario_numerica(file):
     """Agrega la columna de universitario al archivo de individuos"""
