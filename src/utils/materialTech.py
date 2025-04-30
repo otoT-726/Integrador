@@ -1,6 +1,9 @@
 import csv
 from pathlib import Path
 
+indice_v4 = "IV4"
+indice_ixtot = "IX_TOT"
+
 def clasificar_material(v4):
     """Clasifica el material de acuerdo al valor de v4"""
     if v4 in ['1', '2', '3', '4']:
@@ -25,18 +28,14 @@ def clasificar_densidad(IX_TOT):
 def agregar_material_techumbre_y_densidad(archivo):
     """Agrega las columnas MATERIAL_TECHUMBRE y DENSIDAD HOGAR a un archivo CSV"""
     with open(archivo) as entrada:
-        lector = csv.reader(entrada, delimiter=';')
+        lector = csv.DictReader(entrada, delimiter=';')
         encabezado, cuerpo = next(lector), list(lector)
-
-        # Buscamos en qué posición está la columna V4 e IX_TOT
-        indice_v4 = encabezado.index('IV4')
-        indice_ixtot = encabezado.index('IX_TOT')
 
         # Le agregamos la nueva columna al encabezado
         nuevo_encabezado = encabezado + ['MATERIAL_TECHUMBRE', 'DENSIDAD HOGAR']
 
         with open(archivo, 'w', newline='') as salida:
-            escritor = csv.writer(salida, delimiter=';')
+            escritor = csv.DictReader(salida, delimiter=';')
             escritor.writerow(nuevo_encabezado)
 
             for fila in cuerpo:
