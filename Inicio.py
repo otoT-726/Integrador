@@ -15,5 +15,8 @@ st.title("Encuest App")
 
 st.divider()
 
-st.subheader("") #PARRAFO EXPLICATIVO DE LA EPH
+st.subheader("¿Qué es la Encuesta Permanente de Hogares?")
 
+st.write("La Encuesta Permanente de Hogares (EPH) es un programa nacional de producción permanente de indicadores sociales" \
+" cuyo objetivo es conocer las características socioeconómicas de la población." \
+" Es realizada en forma conjunta por el Instituto Nacional de Estadística y Censos (INDEC) y las Direcciones Provinciales de Estadística (DPE)")
