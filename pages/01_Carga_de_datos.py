@@ -20,9 +20,8 @@ info_fechas_individuos = primerUltimoTrimAno(data_path_arch_individuos)
 info_fechas_hogares = primerUltimoTrimAno(data_path_arch_hogares)
 
 st.markdown(f"El sistema contiene informacion de individuos desde **el año:  {info_fechas_individuos[0][0]},  trimestre: {info_fechas_individuos[0][1]}**, hasta **el año: {info_fechas_individuos[1][0]}, trimestre: {info_fechas_individuos[1][1]}**")
-st.divider()
 st.markdown(f"El sistema contiene informacion de hogares desde **el año:  {info_fechas_hogares[0][0]},  trimestre: {info_fechas_hogares[0][1]}**, hasta **el año: {info_fechas_hogares[1][0]}, trimestre: {info_fechas_hogares[1][1]}**")
-st.divider()
+st.divider() 
 
 #vamos a crear una lista con los archivos que ya tenemos en la base de datos
 listaArchivos = ["archivo_hogares.txt","archivo_individuos.txt","usu_hogar_T124.txt", "usu_hogar_T224.txt", "usu_hogar_T324.txt", "usu_individual_T124.txt", "usu_individual_T224.txt", "usu_individual_T324.txt"]
