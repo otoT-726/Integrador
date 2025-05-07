@@ -26,8 +26,10 @@ st.divider()
 #vamos a crear una lista con los archivos que ya tenemos en la base de datos
 listaArchivos = ["archivo_hogares.txt","archivo_individuos.txt","usu_hogar_T124.txt", "usu_hogar_T224.txt", "usu_hogar_T324.txt", "usu_individual_T124.txt", "usu_individual_T224.txt", "usu_individual_T324.txt"]
 
-st.write("Archivos en la base de datos:")
-st.write(listaArchivos)
+
+with st.expander("Archivos en la base de datos"):
+    for archivo in listaArchivos:
+        st.write(archivo)
 
 def agregar(listaArchivos,data_path):
     for archivo in data_path.iterdir(): # vamos a recorrer los archivos que hay en la carpeta de datos
