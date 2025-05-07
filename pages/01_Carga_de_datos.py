@@ -1,6 +1,6 @@
 import streamlit as st
 from src.utils.primerUltimoTrimAno import primerUltimoTrimAno
-from src.utils.agregar_archivo import agregar_trimestre
+from src.utils.agregar_archivo import agregar_trimestre_completo_hogar, agregar_trimestre_completo_individuo
 from src.utils.rutas import data_path
 
 #CONFIGURACIÓN DE LA PÁGINA
@@ -34,12 +34,12 @@ def agregar(listaArchivos,data_path):
     for archivo in data_path.iterdir(): # vamos a recorrer los archivos que hay en la carpeta de datos
         if archivo.name not in listaArchivos:
             if "usu_h" in archivo.name.lower():
-                agregar_trimestre(data_path_arch_hogares,archivo)
+                agregar_trimestre_completo_hogar(data_path_arch_hogares,archivo)
                 st.success(f"Se ha agregado el archivo {archivo.name} a la base de datos de hogares")
                 #se agrego a la lista de nuestros archivos ya cargados,uno nuevo
                 listaArchivos.append(archivo.name)
             else :
-                agregar_trimestre(data_path_arch_individuos,archivo)
+                agregar_trimestre_completo_individuo(data_path_arch_individuos,archivo)
                 st.success(f"Se ha agregado el archivo {archivo.name} a la base de datos de individuos")
                 listaArchivos.append(archivo.name)
 
