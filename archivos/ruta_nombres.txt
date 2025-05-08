@@ -1,0 +1,1 @@
+archivo_hogares.txt;archivo_individuos.txt;prueba.txt;ruta_nombres.txt;usu_hogar_T124.txt;usu_hogar_T224.txt;usu_hogar_T324.txt;usu_individual_T124.txt;usu_individual_T224.txt;usu_individual_T324.txt
