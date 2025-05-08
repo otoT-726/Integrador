@@ -1,7 +1,7 @@
 import csv
 from src.utils.rutas import data_path
 
-def crear_individuo(archivo_individuos):
+def crear_individuo(archivo_individuos = data_path / "archivo_individuos.txt"):
     """Recibe ubicacion donde crear el archivo maestro de individuos y el Path del detalle para agregar el header"""
     
     detalle_i = data_path / "usu_individual_T324.txt"
@@ -19,7 +19,7 @@ def crear_individuo(archivo_individuos):
 
 #Creadores de archivos maestros
 
-def crear_hogar(archivo_hogares):
+def crear_hogar(archivo_hogares = data_path / "archivo_hogares.txt"):
     """Recibe ubicacion donde crear el archivo maestro de hogares y el Path del detalle para agregar el header"""
     detalle_h = data_path / "usu_hogar_T324.txt"
     with open(detalle_h) as archivo:
