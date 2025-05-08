@@ -1,3 +1,4 @@
+import csv
 import streamlit as st
 from src.utils.primerUltimoTrimAno import primerUltimoTrimAno
 from src.utils.agregar_archivo import agregar_trimestre_completo_hogar, agregar_trimestre_completo_individuo
@@ -16,34 +17,42 @@ st.title('Carga de datos')
 
 st.divider()
 
-info_fechas_individuos = primerUltimoTrimAno(data_path_arch_individuos)
+"""info_fechas_individuos = primerUltimoTrimAno(data_path_arch_individuos)
 info_fechas_hogares = primerUltimoTrimAno(data_path_arch_hogares)
 
 st.markdown(f"El sistema contiene informacion de individuos desde **el año:  {info_fechas_individuos[0][0]},  trimestre: {info_fechas_individuos[0][1]}**, hasta **el año: {info_fechas_individuos[1][0]}, trimestre: {info_fechas_individuos[1][1]}**")
 st.markdown(f"El sistema contiene informacion de hogares desde **el año:  {info_fechas_hogares[0][0]},  trimestre: {info_fechas_hogares[0][1]}**, hasta **el año: {info_fechas_hogares[1][0]}, trimestre: {info_fechas_hogares[1][1]}**")
-st.divider() 
+st.divider() """
 
 #vamos a crear una lista con los archivos que ya tenemos en la base de datos
-listaArchivos = ["archivo_hogares.txt","archivo_individuos.txt","usu_hogar_T124.txt", "usu_hogar_T224.txt", "usu_hogar_T324.txt", "usu_individual_T124.txt", "usu_individual_T224.txt", "usu_individual_T324.txt"]
 
-
-with st.expander("Archivos en la base de datos"):
-    for archivo in listaArchivos:
-        st.write(archivo)
 
 def agregar(listaArchivos,data_path):
     for archivo in data_path.iterdir(): # vamos a recorrer los archivos que hay en la carpeta de datos
-        if archivo.name not in listaArchivos:
-            if "usu_h" in archivo.name.lower():
-                agregar_trimestre_completo_hogar(data_path_arch_hogares,archivo)
-                st.success(f"Se ha agregado el archivo {archivo.name} a la base de datos de hogares")
-                #se agrego a la lista de nuestros archivos ya cargados,uno nuevo
-                listaArchivos.append(archivo.name)
-            else :
-                agregar_trimestre_completo_individuo(data_path_arch_individuos,archivo)
-                st.success(f"Se ha agregado el archivo {archivo.name} a la base de datos de individuos")
-                listaArchivos.append(archivo.name)
+        #for elem in listaArchivos:
+        if archivo.name not in listaArchivos:   #saco el [0]
+            st.write(archivo)
+            listaArchivos.append(archivo.name)
+            
+            with open(ruta_nombres, "w") as nombres:
+                csv.writer(nombres, delimiter=";").writerow(listaArchivos)
 
-if st.button("Agregar archivos nuevos"):
-    agregar(listaArchivos,data_path)
-    st.success("Archivos agregados correctamente")
+            if "hogar" in archivo.name.lower():
+                agregar_trimestre_completo_hogar(archivo)
+                st.success(f"Se ha agregado el archivo {archivo.name} a la base de datos de hogares")
+                #se agrego a la lista de nuestros archivos ya cargados,uno nuevo                    
+            elif "indi" in archivo.name.lower() :
+                agregar_trimestre_completo_individuo(archivo)
+                st.success(f"Se ha agregado el archivo {archivo.name} a la base de datos de individuos")
+
+
+ruta_nombres = data_path / "ruta_nombres.txt"
+with open(ruta_nombres) as file:
+    listaArchivos = list(csv.reader(file, delimiter= ";"))[0]
+    st.write(listaArchivos)
+    with st.expander("Archivos en la base de datos"):
+        for nombre in listaArchivos:
+            st.write(nombre)
+    if st.button("Agregar archivos nuevos"):
+        agregar(listaArchivos,data_path)
+        st.success("Archivos agregados correctamente")
