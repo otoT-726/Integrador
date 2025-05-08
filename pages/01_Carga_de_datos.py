@@ -17,13 +17,22 @@ st.title('Carga de datos')
 
 st.divider()
 
-"""info_fechas_individuos = primerUltimoTrimAno(data_path_arch_individuos)
-info_fechas_hogares = primerUltimoTrimAno(data_path_arch_hogares)
 
-st.markdown(f"El sistema contiene informacion de individuos desde **el año:  {info_fechas_individuos[0][0]},  trimestre: {info_fechas_individuos[0][1]}**, hasta **el año: {info_fechas_individuos[1][0]}, trimestre: {info_fechas_individuos[1][1]}**")
-st.markdown(f"El sistema contiene informacion de hogares desde **el año:  {info_fechas_hogares[0][0]},  trimestre: {info_fechas_hogares[0][1]}**, hasta **el año: {info_fechas_hogares[1][0]}, trimestre: {info_fechas_hogares[1][1]}**")
-st.divider() """
 
+try:
+    info_fechas_individuos = primerUltimoTrimAno(data_path_arch_individuos)
+    info_fechas_hogares = primerUltimoTrimAno(data_path_arch_hogares)
+
+    st.markdown(f"El sistema contiene informacion de individuos desde **el año:  {info_fechas_individuos[0][0]},  trimestre: {info_fechas_individuos[0][1]}**, hasta **el año: {info_fechas_individuos[1][0]}, trimestre: {info_fechas_individuos[1][1]}**")
+    st.markdown(f"El sistema contiene informacion de hogares desde **el año:  {info_fechas_hogares[0][0]},  trimestre: {info_fechas_hogares[0][1]}**, hasta **el año: {info_fechas_hogares[1][0]}, trimestre: {info_fechas_hogares[1][1]}**")
+
+except ValueError:
+    st.write("El dataset no contiene información de ningun trimestre")
+
+st.write(" ")
+st.button("Recargar información")
+
+st.divider()
 #vamos a crear una lista con los archivos que ya tenemos en la base de datos
 
 
@@ -31,7 +40,6 @@ def agregar(listaArchivos,data_path):
     for archivo in data_path.iterdir(): # vamos a recorrer los archivos que hay en la carpeta de datos
         #for elem in listaArchivos:
         if archivo.name not in listaArchivos:   #saco el [0]
-            st.write(archivo)
             listaArchivos.append(archivo.name)
             
             with open(ruta_nombres, "w") as nombres:
@@ -49,10 +57,10 @@ def agregar(listaArchivos,data_path):
 ruta_nombres = data_path / "ruta_nombres.txt"
 with open(ruta_nombres) as file:
     listaArchivos = list(csv.reader(file, delimiter= ";"))[0]
-    st.write(listaArchivos)
     with st.expander("Archivos en la base de datos"):
         for nombre in listaArchivos:
             st.write(nombre)
     if st.button("Agregar archivos nuevos"):
         agregar(listaArchivos,data_path)
         st.success("Archivos agregados correctamente")
+
