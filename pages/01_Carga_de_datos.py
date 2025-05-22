@@ -3,8 +3,8 @@ import streamlit as st
 from src.utils.primerUltimoTrimAno import primerUltimoTrimAno
 from src.utils.agregar_archivo import agregar_trimestre_completo_hogar, agregar_trimestre_completo_individuo
 from src.utils.rutas import data_path
-
-#CONFIGURACIÓN DE LA PÁGINA
+from src.utils.verificacion import correspondencias
+#CONFIGURACIÓN DE LA PÁGINA .02_Busqueda_de_archivos import Busqueda_de_archivos
 
 data_path_arch_individuos = data_path / "archivo_individuos.txt"
 data_path_arch_hogares = data_path / "archivo_hogares.txt"
@@ -36,11 +36,11 @@ st.divider()
 #vamos a crear una lista con los archivos que ya tenemos en la base de datos
 
 
-def agregar(listaArchivos,data_path):
+def agregar(data_path):
+    listaArchivos = correspondencias()
     for archivo in data_path.iterdir(): # vamos a recorrer los archivos que hay en la carpeta de datos
         #for elem in listaArchivos:
-        if archivo.name not in listaArchivos:   #saco el [0]
-            listaArchivos.append(archivo.name)
+        if archivo.name not in listaArchivos:
             
             with open(ruta_nombres, "w") as nombres:
                 csv.writer(nombres, delimiter=";").writerow(listaArchivos)
@@ -52,7 +52,9 @@ def agregar(listaArchivos,data_path):
             elif "indi" in archivo.name.lower() :
                 agregar_trimestre_completo_individuo(archivo)
                 st.success(f"Se ha agregado el archivo {archivo.name} a la base de datos de individuos")
-
+        else:
+            #Falta hacer la funcion para detallar de forma mas prolija el faltante 
+            st.warning('El archivo ', archivo.name, ' no tiene correspondencia.')
 
 ruta_nombres = data_path / "ruta_nombres.txt"
 with open(ruta_nombres) as file:
