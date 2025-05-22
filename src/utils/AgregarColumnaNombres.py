@@ -1,4 +1,3 @@
-from src.utils.rutas import data_path
 import csv
 def addColumna(archivo_individuos):
     index_genero = "CH04"
@@ -16,6 +15,7 @@ def addColumna(archivo_individuos):
             
             filas.append(dat) # dat es la linea,que es una lista, entonces a esa linea le agrego el genero y quedara modificada
 
-    with open(data_path/"archivo_individuos.txt", "a",newline='') as mae:
+    with open(archivo_individuos, "w",newline='') as mae:
         csv_writer = csv.DictWriter(mae,delimiter=";", fieldnames=header) # writter para indicar que voy a escribir el archivo
+        csv_writer.writeheader()
         csv_writer.writerows(filas) # con el writerow voy a escribir la linea dat
