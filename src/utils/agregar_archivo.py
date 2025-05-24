@@ -1,11 +1,11 @@
 import csv
 from src.utils.rutas import project_path, data_path
-from src.utils.AgregarColumnaNombres import addColumna
-from src.utils.AgregarColumnaNivelED import addNivelED
+from utils.agregar_columna_nombres import addColumna
+from utils.agregar_columna_nivelED import addNivelED
 from src.utils.condicion_laboral import agregar_condicion_laboral
 from src.utils.columna_tipocasa import columna_tipo_de_casa
 from src.utils.columna_universitario import columna_universitario_numerica
-from src.utils.materialTech import agregar_material_techumbre_y_densidad
+from utils.material_tech import agregar_material_techumbre_y_densidad
 from src.utils.condicion_habitabilidad import condicion_de_habitabilidad 
 
 def agregar_trimestre(maestro, detalle):

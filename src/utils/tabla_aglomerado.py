@@ -1,10 +1,11 @@
 import csv
-
+from src.utils.__init__ import diccionario_aglomerados
 index_aglomerado = "AGLOMERADO"
 index_ch06 = "CH06"
 index_nivel = "NIVEL_ED"
 index_anio = "ANO4"
 index_trimestre = "TRIMESTRE"
+index_pondera = "PONDERA"
 
 #recibo una lista de sublistas con la informacion filtrada por aglomeracion ingresada y por mayores de edad
 def crearDiccionario(archivo):
@@ -21,6 +22,7 @@ def crearDiccionario(archivo):
     for fila in archivo:
         anio = fila[index_anio]
         trimestre = fila[index_trimestre]
+        pondera = fila[index_pondera]
 
         try:
             nivel = int(fila[index_nivel])
@@ -34,9 +36,9 @@ def crearDiccionario(archivo):
         if trimestre not in dicAglomerado[anio]:
             dicAglomerado[anio][trimestre] = {}
         if tipo_nivel not in dicAglomerado[anio][trimestre]:
-            dicAglomerado[anio][trimestre][tipo_nivel] = 1
+            dicAglomerado[anio][trimestre][tipo_nivel] = pondera
         else:
-            dicAglomerado[anio][trimestre][tipo_nivel] += 1
+            dicAglomerado[anio][trimestre][tipo_nivel] += pondera
     print("Se creó el diccionario con la información de años, trimestres y niveles")
     return dicAglomerado
                     
@@ -57,7 +59,13 @@ def filtrar_info(archivo, numero_aglomerado):
 
 
 def crearTabla(archivo_individuos):
-    aglomerado = input("ingrese un numero de aglomerado ")
+    ok  = True
+    aglomerado = int(input("ingrese un numero de aglomerado "))
+    #validar que el aglomerado sea un numero
+    while (aglomerado not in diccionario_aglomerados.keys()):
+        print("El valor ingresado no es un número válido.")
+        aglomerado = int(input("ingrese un numero de aglomerado "))
+
     with open(archivo_individuos,encoding="utf-8") as arch:
         informacion = filtrar_info(arch, aglomerado)
         print("IMPRIMO INFORMAACION DEL DICCIONARIO")
