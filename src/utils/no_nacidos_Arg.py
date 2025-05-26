@@ -1,5 +1,6 @@
 
 import csv
+#EJERCICIO 2 SECCION B
 def noNacidosArg(año , trimestre, archivo):
     """informa porcentaje de personas no argentinas y hayan cursado un nivel universitario o sup"""
 

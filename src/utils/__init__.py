@@ -1,3 +1,4 @@
+#DICCIONARIO DE AGLOMERADOS
 diccionario_aglomerados = {
     2 : "Gran La Plata",
     3 : "Bahía Blanca - Cerri",

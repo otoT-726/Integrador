@@ -1,5 +1,5 @@
 import csv
-
+#EJERCICIO 13 SECCION B
 index_nivelED= "NIVEL_ED"
 index_anio = "ANO4"
 index_trimestre = "TRIMESTRE"
@@ -9,6 +9,7 @@ index_nroHogar = "NRO_HOGAR"
 index_pondera = "PONDERA"
 
 def personas_universitario_insuficiente(archivo_hogares, archivo_individuos):
+    """Funcion que cuenta la cantidad de personas con estudios universitarios insuficientes"""
     anio = input("Ingresá el año a analizar: ")
     viviendas_insuficientes = set()
     cantidad = 0
@@ -17,7 +18,7 @@ def personas_universitario_insuficiente(archivo_hogares, archivo_individuos):
         """Recorre el archivo hogares y guarda las viviendas insuficientes"""
         hogares_reader = csv.DictReader(hogares, delimiter=";")
         for linea in hogares_reader:
-            if linea[index_anio] == anio and linea[index_trimestre] == "3":
+            if linea[index_anio] == anio and linea[index_trimestre] == "4":
                 if linea[index_condicion] == "Insuficiente":
                     viviendas_insuficientes.add((linea[index_codUsu], linea[index_nroHogar]))
 

@@ -1,4 +1,4 @@
-from src.utils.rutas import data_path
+from utils.rutas import data_path
 def correspondencias():
     """Funcion que corrobora las correspondencias de los archivos individuos y hogares"""
     listaArchivosActuales = []

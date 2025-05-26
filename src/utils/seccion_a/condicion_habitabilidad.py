@@ -1,5 +1,5 @@
 import csv
-
+#EJERCICIO 10 SECCION A
 def condicion_de_habitabilidad(ruta) -> None:           #Especifico que la funcion retorna None. Al ejecutarla solo actualiza al archivo
     """
     Recibe el archivo maestro y lo actualiza. Retorna None

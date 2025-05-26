@@ -1,4 +1,5 @@
 import csv
+#EJERCICIO 9 SECCION B
 from src.utils.__init__ import diccionario_aglomerados
 index_aglomerado = "AGLOMERADO"
 index_ch06 = "CH06"

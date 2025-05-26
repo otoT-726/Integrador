@@ -1,6 +1,6 @@
 import csv
 from src.utils import diccionario_aglomerados
-
+#EJERCICIO 7 SECCION B
 def porcentaje_universitarios_aglomerados(ruta):
     """ Informa el porcentaje de personas que hayan cursado al menos en 
         nivel universitario o superior por aglomerado"""

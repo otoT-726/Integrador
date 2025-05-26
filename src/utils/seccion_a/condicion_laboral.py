@@ -1,3 +1,5 @@
+#EJERCICIO 5 SECCION A
+
 #5.​ Se debe crear una nueva columna denominada CONDICION_LABORAL de formato
 #texto. La transformación debe seguir las siguientes reglas:Trabajo Integrador 2025 - Seminario de Lenguajes Opción Python
 #-​Ocupado autónomo: si ESTADO es igual a 1 y CAT_OCUP es 1 o 2.
@@ -9,6 +11,7 @@
 import csv
 
 def agregar_condicion_laboral(maestro):
+    """La funcion agrega una columna de condicion laboral al archivo de detalle de individuos recibido para agregarlo al maestro"""
     index_estado = 27
     index_cat_ocup = 28
     with open (maestro) as archivo:

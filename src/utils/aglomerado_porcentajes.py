@@ -1,6 +1,6 @@
 import csv
 from pathlib import Path
-
+#MODULO AYUDA EJERCICIO 13 SECCION B
 index_aglomerado = "AGLOMERADO"
 index_condicion = "CONDICION_DE_HABITABILIDAD"
 index_trimestre = "TRIMESTRE"
@@ -79,6 +79,7 @@ codigo_a_nombre = {
 }
 
 def procentajeAglomerado(archivo_hogares):
+    """Recibe el archivo maestro de hogares y devuelve el porcentaje de hogares con habitabilidad insuficiente por aglomerado"""
     with open(archivo_hogares, newline="", encoding="utf-8") as archivo:
         csv_reader = csv.DictReader(archivo, delimiter=";")
         

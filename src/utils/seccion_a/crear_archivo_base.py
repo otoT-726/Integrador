@@ -1,6 +1,6 @@
 import csv
-from src.utils.rutas import data_path
-
+from utils.rutas import data_path
+#EJERCICIO 2 BIS SECCION A
 def crear_individuo(archivo_individuos = data_path / "archivo_individuos.txt"):
     """Recibe ubicacion donde crear el archivo maestro de individuos y el Path del detalle para agregar el header"""
     

@@ -1,5 +1,5 @@
 import csv
-
+#EJERCICIO 10 SECCION B
 def calcular_porcentaje(archivo_individuos):
     #Inputs para ingresar aglomerados
     aglomeradoA = input("Ingrese el primer Aglomerado")

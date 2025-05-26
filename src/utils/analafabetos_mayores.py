@@ -1,5 +1,5 @@
 import csv
-
+#EJERCICIO 1 SECCION B
 index_edad = "CH06"
 index_año = "ANO4"
 index_trimestre = "TRIMESTRE"

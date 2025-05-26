@@ -1,6 +1,6 @@
 import csv
 from src.utils import diccionario_aglomerados
-
+# EJERCICIO 5 SECCION B
 def porcentaje_propietarios_aglomerado(camino):
     """ Retorna el porcentaje de gente que es propietaria de su domicilio por aglomerado """
 

@@ -1,9 +1,10 @@
 import csv
-
+#EJERCICIO 8 y 9 SECCION A
 indice_v4 = "IV4"
 indice_ixtot = "IX_TOT"
 
 def clasificar_material(v4):
+    """Clasifica el material de techumbre de acuerdo a la variable IV4"""
     if v4 in ['1', '2', '3', '4']:
         return "Material durable"
     elif v4 in ['5', '6', '7']:
@@ -14,6 +15,7 @@ def clasificar_material(v4):
         return "Valor desconocido"
 
 def clasificar_densidad(IX_TOT):
+    """Clasifica la densidad de techumbre de acuerdo a la variable IX_TOT"""
     valor = float(IX_TOT)
     if valor < 1:
         return "Bajo"

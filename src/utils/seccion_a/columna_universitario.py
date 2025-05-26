@@ -1,5 +1,5 @@
 import csv
-
+# EJERCICIO 6 SECCION A
 
 # Condiciones
 # 1 SI ES MAYOR DE EDAD Y COMPLETO LA UNIVERSIDAD

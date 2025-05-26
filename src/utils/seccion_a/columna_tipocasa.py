@@ -1,5 +1,5 @@
 import csv
-
+#EJERCICIO 7 SECCION A
 index_miembros = "IX_TOT" #64
 
 

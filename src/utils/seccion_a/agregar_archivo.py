@@ -1,12 +1,13 @@
 import csv
-from src.utils.rutas import project_path, data_path
-from utils.agregar_columna_nombres import addColumna
-from utils.agregar_columna_nivelED import addNivelED
-from src.utils.condicion_laboral import agregar_condicion_laboral
-from src.utils.columna_tipocasa import columna_tipo_de_casa
-from src.utils.columna_universitario import columna_universitario_numerica
-from utils.material_tech import agregar_material_techumbre_y_densidad
-from src.utils.condicion_habitabilidad import condicion_de_habitabilidad 
+#EJERCICIO 2 SECCION A
+from utils.rutas import project_path, data_path
+from utils.seccion_a.agregar_columna_nombres import addColumna #EJERCICIO 3
+from utils.seccion_a.agregar_columna_nivelED import addNivelED #EJERCICIO 4
+from utils.seccion_a.condicion_laboral import agregar_condicion_laboral #EJERCICIO 5
+from utils.seccion_a.columna_tipocasa import columna_tipo_de_casa #EJERCICIO 7
+from utils.seccion_a.columna_universitario import columna_universitario_numerica #EJERCICIO 6
+from utils.seccion_a.material_tech import agregar_material_techumbre_y_densidad #EJERCICIO 8 y 9 
+from utils.seccion_a.condicion_habitabilidad import condicion_de_habitabilidad #EJERCICIO 10
 
 def agregar_trimestre(maestro, detalle):
     """Agrega los datos de un trimestre de eph a nuestra base de datos"""
@@ -20,6 +21,7 @@ def agregar_trimestre(maestro, detalle):
 
 
 def agregar_trimestre_completo_individuo(detalle, maestro = data_path / "archivo_individuos.txt"):
+    """Agrega las columnas necesarias al archivo detalle individuo recibido para agregarlo al maestro"""
     addColumna(detalle) #punto 3
     addNivelED(detalle) #punto 4
     agregar_condicion_laboral(detalle) #punto 5
@@ -31,6 +33,7 @@ def agregar_trimestre_completo_individuo(detalle, maestro = data_path / "archivo
 
 
 def agregar_trimestre_completo_hogar(detalle, maestro = data_path / "archivo_hogares.txt"):
+    """Agrega las columnas necesarias al archivo detalle hogar recibido para agregarlo al maestro"""
     #addColumna(detalle) #punto 3
     #addNivelED(detalle) #punto 4
     #agregar_condicion_laboral(detalle) #punto 5

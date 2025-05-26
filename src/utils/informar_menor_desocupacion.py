@@ -1,5 +1,5 @@
 import csv 
-
+#EJERCICIO 3 SECCION B
 def informe_menor_desocupacion(archivo_hogares):
     """
         Genera un informe de la cantidad de personas desocupadas por hogar.

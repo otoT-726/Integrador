@@ -1,6 +1,6 @@
 import csv
 from src.utils import diccionario_aglomerados
-
+#EJERCICIO 6 SECCION B
 def aglomerado_con_menos_baños(ruta) -> None:
     """ Devuelve el aglomerado con mayor cantidad de casas con más de dos habitantes que no cuenten con baño"""
 

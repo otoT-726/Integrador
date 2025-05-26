@@ -1,9 +1,9 @@
 import csv
 import streamlit as st
-from src.utils.primerUltimoTrimAno import primerUltimoTrimAno
-from src.utils.agregar_archivo import agregar_trimestre_completo_hogar, agregar_trimestre_completo_individuo
-from src.utils.rutas import data_path
-from src.utils.verificacion import correspondencias
+from src.utils.seccion_b.primer_ultimo_trim_ano import primerUltimoTrimAno
+from utils.seccion_a.agregar_archivo import agregar_trimestre_completo_hogar, agregar_trimestre_completo_individuo
+from utils.rutas import data_path
+from utils.parte_2.verificacion import correspondencias
 #CONFIGURACIÓN DE LA PÁGINA .02_Busqueda_de_archivos import Busqueda_de_archivos
 
 data_path_arch_individuos = data_path / "archivo_individuos.txt"

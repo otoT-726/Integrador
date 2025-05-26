@@ -1,5 +1,5 @@
 import csv
-
+#EJERCICIO 8
 def ordenar_regiones(archivo_hogares):
     with open(archivo_hogares, "r") as archivo:
         csv_dict_reader = csv.DictReader(archivo, delimiter=";")

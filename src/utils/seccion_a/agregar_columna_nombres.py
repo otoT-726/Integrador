@@ -1,5 +1,7 @@
 import csv
+#EJERCICIO 3 SECCION A
 def addColumna(archivo_individuos):
+    """Agrega la columna de genero al archivo de detalle de individuos recibido para agregarlo al maestro"""
     index_genero = "CH04"
     #traigo el archivo maestro
     with open(archivo_individuos, "r",newline='') as mae:
