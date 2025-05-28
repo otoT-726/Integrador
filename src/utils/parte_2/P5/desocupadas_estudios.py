@@ -10,10 +10,10 @@ def mostrar_desocupadas_estudios():
     df_individuos = pd.read_csv(archivo, sep = ';')
     
     anos_disponibles = sorted(df_individuos["ANO4"].unique())
-    anos = st.selectbox("SELECCIONA UN TRIMESTRE", anos_disponibles)
+    anos = st.selectbox("SELECCIONA UN AÑO QUE DESEE VISUALIZAR", anos_disponibles, index=None, placeholder="Seleccione un año")
     
     trims_disponibles = sorted(df_individuos["TRIMESTRE"].unique())
-    trims = st.selectbox("SELECCIONA UN TRIMESTRE", trims_disponibles)
+    trims = st.selectbox("SELECCIONA UN TRIMESTRE", trims_disponibles, index=None, placeholder="Seleccione un trimestre")
     
     filtro = ((df_individuos["ANO4"] == anos) & (df_individuos["TRIMESTRE"] == trims)) 
     
