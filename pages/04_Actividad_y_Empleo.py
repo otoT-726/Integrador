@@ -1,0 +1,3 @@
+from src.utils.parte_2.P5.desocupadas_estudios import mostrar_desocupadas_estudios
+
+mostrar_desocupadas_estudios()
