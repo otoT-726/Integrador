@@ -4,9 +4,10 @@ import sys
 from pathlib import Path
 sys.path.append(str(Path(__file__).resolve().parents[1] / 'src'))
 from src.utils.seccion_b.primer_ultimo_trim_ano import primerUltimoTrimAno
-from utils.seccion_a.agregar_archivo import agregar_trimestre_completo_hogar, agregar_trimestre_completo_individuo
-from utils.rutas import data_path
-from utils.parte_2.verificacion import correspondencias
+
+from src.utils.seccion_a.agregar_archivo import agregar_trimestre_completo_hogar, agregar_trimestre_completo_individuo
+from src.utils.rutas import data_path
+from src.utils.parte_2.verificacion import correspondencias
 
 # Importar las rutas de los archivos necesarios
 import sys
@@ -65,7 +66,7 @@ def agregar(data_path, lista_archivos):
                 st.success(f"Se ha agregado el archivo {archivo.name} a la base de datos de individuos")
         else:
             #Falta hacer la funcion para detallar de forma mas prolija el faltante 
-            st.warning(f'El archivo {archivo.name} ya se encuentra en la base de datos, no se agregará nuevamente')
+            st.warning(f'El archivo {archivo.name} no tiene correspondencia.')
 
 ruta_nombres = data_path / "ruta_nombres.txt"
 with open(ruta_nombres) as file:
