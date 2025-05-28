@@ -1,16 +1,14 @@
 import csv
 import streamlit as st
-<<<<<<< HEAD
-from utils.seccion_b.primer_ultimo_trim_ano import primerUltimoTrimAno
-=======
 import sys
+
 from pathlib import Path
 sys.path.append(str(Path(__file__).resolve().parents[1] / 'src'))
 from src.utils.seccion_b.primer_ultimo_trim_ano import primerUltimoTrimAno
->>>>>>> 3020718cb06d06e1033ef7ff7f04b836cb372f6b
-from utils.seccion_a.agregar_archivo import agregar_trimestre_completo_hogar, agregar_trimestre_completo_individuo
-from utils.rutas import data_path
-from utils.parte_2.verificacion import correspondencias
+
+from src.utils.seccion_a.agregar_archivo import agregar_trimestre_completo_hogar, agregar_trimestre_completo_individuo
+from src.utils.rutas import data_path
+from src.utils.parte_2.verificacion import correspondencias
 
 # Importar las rutas de los archivos necesarios
 import sys
@@ -69,11 +67,7 @@ def agregar(data_path, lista_archivos):
                 st.success(f"Se ha agregado el archivo {archivo.name} a la base de datos de individuos")
         else:
             #Falta hacer la funcion para detallar de forma mas prolija el faltante 
-<<<<<<< HEAD
-            st.warning(f'El archivo {archivo.name} ya se encuentra en la base de datos, no se agregará nuevamente')
-=======
             st.warning(f'El archivo {archivo.name} no tiene correspondencia.')
->>>>>>> 3020718cb06d06e1033ef7ff7f04b836cb372f6b
 
 ruta_nombres = data_path / "ruta_nombres.txt"
 with open(ruta_nombres) as file:
@@ -81,12 +75,7 @@ with open(ruta_nombres) as file:
     with st.expander("Archivos en la base de datos"):
         for nombre in lista_archivos:
             st.write(nombre)
-<<<<<<< HEAD
-    if st.button("Actualizar dataset"):
-        agregar(data_path)
-=======
     if st.button("Agregar archivos nuevos"):
         agregar(data_path,lista_archivos)
->>>>>>> 3020718cb06d06e1033ef7ff7f04b836cb372f6b
         st.success("Archivos agregados correctamente")
 
