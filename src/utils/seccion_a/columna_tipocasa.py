@@ -20,7 +20,7 @@ def columna_tipo_de_casa(file):
             filas.append(line)
 
     #Agrego la nueva columna al archivo
-    with open(file, 'w', newline='') as archivo:
+    with open(file, 'w', newline='',encoding='utf-8') as archivo:
         csv_writer = csv.DictWriter(archivo, fieldnames=header, delimiter=';')
         csv_writer.writeheader()  # Escribo el header
         csv_writer.writerows(filas)  # Escribo las filas

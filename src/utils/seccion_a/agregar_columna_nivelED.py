@@ -26,7 +26,7 @@ def addNivelED(archivo_individuos):
         # luego agrego el nivel educativo tambien a la fila,pero quedara modificada la fila con el nuevo dato agregado
                 filas.append(dat)
 
-        with open(archivo_individuos, "w", newline='') as mae:
+        with open(archivo_individuos, "w", newline='',encoding='utf-8') as mae:
                 # writter para indicar que voy a escribir el archivo
                 csv_writer = csv.DictWriter(mae, delimiter=";", fieldnames=header)
                 csv_writer.writeheader()
