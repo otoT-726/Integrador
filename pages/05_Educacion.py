@@ -1,11 +1,15 @@
 import streamlit as st
 import pandas as pd
+from pathlib import Path
+from src.utils.rutas import data_path
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 from src.utils.parte_2.P6.informar_cantidad_nivel_educativo import informar_cantidad_nivelEd 
 from src.utils.parte_2.P6.grupos_etarios_nivel_ed import grupos_etarios
+from src.utils.seccion_b.ranking_5_aglomerados import rankin 
 #Archivo individuos
-
+archivo_individuos = data_path / "archivo_individuos.txt"
+archivo_hogares = data_path / "archivo_hogares.txt"
 
 anio = st.number_input("Ingrese el año para el cual desea ver la cantidad de personas por nivel educativo:", min_value=2023, max_value=2024)
 
@@ -83,3 +87,31 @@ if grupo_seleccionados:
         st.info("No hay datos para los grupos seleccionados.")
 else:
     st.warning("Seleccioná al menos un grupo para ver el gráfico.")
+
+st.divider()
+
+st.subheader("Ranking de los 5 Aglomerados con mayor porcentaje de hogares con individuos con estudios universitarios o superiores finalizados") 
+
+#boton para exportar el ranking de los 5 aglomerados a un archivo CSV
+
+exportar = st.button("Exportar Ranking a CSV")
+
+
+if exportar:
+    df_ranking = rankin(archivo_individuos, archivo_hogares)
+    df_ranking.index = df_ranking.index + 1 #Ajusto el índice para que empiece en 1 
+
+    if not df_ranking.empty:
+        st.write("Resultado del ranking:")
+        st.dataframe(df_ranking)
+
+        # Convertir a CSV y ofrecer descarga
+        csv_data = df_ranking.to_csv(index=False).encode("utf-8")
+        st.download_button(
+            label="Descargar CSV",
+            data=csv_data,
+            file_name="ranking_aglomerados.csv",
+            mime="text/csv"
+        )
+    else:
+        st.info("No se encontraron datos para calcular el ranking.")
