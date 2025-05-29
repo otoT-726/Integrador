@@ -1,5 +1,6 @@
 import pandas as pd
 def mayoresA6(archivo):
+    """Funcion que analiza un archivo CSV para calcular el porcentaje de personas mayores de 6 años que saben y no saben leer ni escribir, agrupado por año."""
     import csv
     import pandas as pd
 

@@ -124,17 +124,21 @@ st.subheader("Alfabetismo en personas mayores de 6 años")
 
 archivo = archivo_individuos
 
+#Verificar si el archivo existe y si no mostrar un aviso
 if archivo is not None:
-    df_resultado = mayoresA6(archivo)
+    df_resultado = mayoresA6(archivo) #Aplico la función para obtener el DataFrame con los porcentajes de alfabetismo
 
     st.subheader("Porcentajes por año")
 
-    for _, row in df_resultado.iterrows():
+    for _, row in df_resultado.iterrows(): #Itero sobre cada fila del DataFrame y obtengo los porcentajes de alfabetismo por año
         año = row["Año"]
         saben = row["Saben leer y escribir (%)"]
         no_saben = row["No saben leer ni escribir (%)"]
 
-        st.markdown(f"### Año {año}")
-        col1, col2 = st.columns(2)
-        col1.metric("Saben leer y escribir", f"{saben:.2f} %")
+        st.markdown(f"### Año {año}") #Muestro el título del año
+        col1, col2 = st.columns(2) #Divido la pantalla en dos columnas
+        # Muestro los porcentajes en las columnas con metric streamlit 
+        col1.metric("Saben leer y escribir", f"{saben:.2f} %") 
         col2.metric("No saben leer ni escribir", f"{no_saben:.2f} %")
+else:
+    st.warning("El archivo de individuos no está disponible o no existe.")
