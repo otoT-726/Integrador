@@ -2,7 +2,7 @@ import sys
 
 import streamlit as st
 import pandas as pd
-import matplotlib as plt
+import matplotlib.pyplot as plt
 from pathlib import Path
 
 from src.utils import rutas
@@ -33,27 +33,53 @@ with tab1:
     año = st.selectbox("Presione aquí para ingresar un año", tuple(años_incluidos),index= None, placeholder="Que año quisieras visualizar?")
 
 
-    cantidad_viviendas = cant_viviendas_por_año(archivo_hogares, año)
-
 with tab2:
     
-    
+    #Linea necesaria para filtrar los datos en caso de que se haya seleccionado un año
+    archivo_hogares = archivo_hogares if año is None else archivo_hogares[archivo_hogares["ANO4"] == año]
     #Esta linea la uso por pura estetica. 
     # No estoy seguro si es la mejor manera de hacerlo
     info = "" if año == None else "en el año " + str(año)
     
-    st.header("Cantidad total de viviendas analizadas" + info + ": " + str(cantidad_viviendas))
-    st.divider
-    st.subheader("Proporción de viviendas segun su tipo.")
+    st.header("Cantidad total de viviendas analizadas" + info + ": " + str(archivo_hogares["PONDERA"].sum()))
+    
 
-    conteo_tipos = archivo_hogares["IV1"]
+    st.divider()
+    
+    st.subheader("Proporción de viviendas segun su tipo.")
+    
 
     #Para crear el pie chart(Grafico de torta)
+    
 
-    conteo_tipos = archivo_hogares[(archivo_hogares["IV1"] <= 6)]["IV1"].value_counts().copy()
-    print(conteo_tipos)
-    index_list = ["casa", "departamento", "pieza de inquilinato", "pieza de hotel/ pension", "local no construido para habitacion", "otros"]
-    conteo_tipos.index = index_list
-    conteo_tipos.plot(kind='pie', autopct='%1.1f%%', title='Proporción de viviendas por tipo')
+    conteo = archivo_hogares[archivo_hogares["IV1"] <= 6].groupby("IV1")["PONDERA"].sum()
+    
+    
+    #Creo las categorias del gráfico
+    casa = conteo.get(1, 0)
+    departamento = conteo.get(2, 0)
+    otros = conteo.loc[3:6].sum()
+    
+    #Creo las series con los datos
+    conteo_tipos = [casa, departamento, otros]
+    index_list = ["casa", "departamento", "otros"]
+    
+    #Creo el gráfico
+    fig, ax = plt.subplots()
+    ax.pie(conteo_tipos, labels=index_list, autopct='%1.1f%%')
+    ax.set_title('Proporción de viviendas por tipo')
+    ax.axis('equal') 
+    st.pyplot(fig)
 
-    plt.show()
+
+    st.subheader("OTROS:")
+
+    total_ponderado = archivo_hogares[archivo_hogares["IV1"] <= 6]["PONDERA"].sum()
+    
+    #Uso estos calculos para devolver el porcentaje que representan los tipos de vivienda que componen "OTROS"
+    #(cant_elementos / total_ponderado) * 100
+    st.write(f"pieza de inquilinato: {((archivo_hogares[archivo_hogares['IV1'] == 3]["PONDERA"].sum()) / total_ponderado)*100:0.2}%")
+    st.write(f"pieza de hotel/pensión: {((archivo_hogares[archivo_hogares['IV1'] == 4]["PONDERA"].sum()) / total_ponderado)*100:0.2}%")
+    st.write(f"local no construido para habitación: {((archivo_hogares[archivo_hogares['IV1'] == 5]["PONDERA"].sum()) / total_ponderado)*100:0.2}%")
+    
+    st.divider()
