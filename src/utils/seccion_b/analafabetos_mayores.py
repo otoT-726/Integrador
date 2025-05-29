@@ -1,13 +1,14 @@
-import csv
-#EJERCICIO 1 SECCION B
-index_edad = "CH06"
-index_año = "ANO4"
-index_trimestre = "TRIMESTRE"
-index_leer_escribir = "CH09"
-index_pondera = "PONDERA"
-
+import pandas as pd
 def mayoresA6(archivo):
-    """Función que calcula el porcentaje de personas mayores a 6 que no saben leer ni escribir en cada año en el último trimestre"""
+    import csv
+    import pandas as pd
+
+    index_edad = "CH06"
+    index_año = "ANO4"
+    index_trimestre = "TRIMESTRE"
+    index_leer_escribir = "CH09"
+    index_pondera = "PONDERA"
+
     with open(archivo, encoding='utf-8') as file:
         csv_reader = csv.DictReader(file, delimiter=';')
         dicCumplen = {}
@@ -29,16 +30,17 @@ def mayoresA6(archivo):
                         elif leer_escribir == "1":
                             dicNoCumplen[año] = dicNoCumplen.get(año, 0) + ponderacion
                 except ValueError:
-                    continue  # En caso de datos faltantes o mal formateados
+                    continue
 
-    for año in dicTotales:
-        try:
-            
-            porcentaje_no_saben = (dicCumplen.get(año, 0) * 100) / dicTotales[año]
-            porcentaje_saben = (dicNoCumplen.get(año, 0) * 100) / dicTotales[año]
-        except ZeroDivisionError:
-            porcentaje_no_saben = 0
-            porcentaje_saben = 0
+    data = []
+    for año in sorted(dicTotales):
+        total = dicTotales[año]
+        porcentaje_no = (dicCumplen.get(año, 0) * 100) / total if total else 0
+        porcentaje_si = (dicNoCumplen.get(año, 0) * 100) / total if total else 0
+        data.append({
+            "Año": año,
+            "Saben leer y escribir (%)": round(porcentaje_si, 2),
+            "No saben leer ni escribir (%)": round(porcentaje_no, 2)
+        })
 
-        print(f'En el año {año} hubo un {porcentaje_no_saben:.2f}% de personas mayores de 6 que no saben leer ni escribir')
-        print(f'En el año {año} hubo un {porcentaje_saben:.2f}% de personas mayores de 6 que saben leer y escribir')
+    return pd.DataFrame(data)

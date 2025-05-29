@@ -7,6 +7,8 @@ import matplotlib.ticker as ticker
 from src.utils.parte_2.P6.informar_cantidad_nivel_educativo import informar_cantidad_nivelEd 
 from src.utils.parte_2.P6.grupos_etarios_nivel_ed import grupos_etarios
 from src.utils.seccion_b.ranking_5_aglomerados import rankin 
+from src.utils.seccion_b.analafabetos_mayores import mayoresA6
+
 #Archivo individuos
 archivo_individuos = data_path / "archivo_individuos.txt"
 archivo_hogares = data_path / "archivo_hogares.txt"
@@ -115,3 +117,24 @@ if exportar:
         )
     else:
         st.info("No se encontraron datos para calcular el ranking.")
+        
+st.divider()
+
+st.subheader("Alfabetismo en personas mayores de 6 años")
+
+archivo = archivo_individuos
+
+if archivo is not None:
+    df_resultado = mayoresA6(archivo)
+
+    st.subheader("Porcentajes por año")
+
+    for _, row in df_resultado.iterrows():
+        año = row["Año"]
+        saben = row["Saben leer y escribir (%)"]
+        no_saben = row["No saben leer ni escribir (%)"]
+
+        st.markdown(f"### Año {año}")
+        col1, col2 = st.columns(2)
+        col1.metric("Saben leer y escribir", f"{saben:.2f} %")
+        col2.metric("No saben leer ni escribir", f"{no_saben:.2f} %")
