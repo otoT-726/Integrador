@@ -29,7 +29,7 @@ def columna_universitario_numerica(file):
             filas.append(line)  # Agrego la fila procesada a 'filas'
 
     # Escribo el archivo con la nueva columna
-    with open(file, 'w', newline='') as archivo:
+    with open(file, 'w', newline='',encoding='utf-8') as archivo:
         csv_writer = csv.DictWriter(archivo,fieldnames=header, delimiter=';')
         csv_writer.writeheader()  # Escribo el header
         csv_writer.writerows(filas)  # Escribo las filas procesadas

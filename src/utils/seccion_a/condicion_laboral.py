@@ -33,6 +33,6 @@ def agregar_condicion_laboral(maestro):
             else:
                 fila.append("Fuera de categoría/sin información")
                 
-    with open(maestro, "w", newline="") as archivo:
+    with open(maestro, "w", newline="",encoding='utf-8') as archivo:
         csv_writer = csv.writer(archivo, delimiter=";")
         csv_writer.writerows(filas)
