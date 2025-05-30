@@ -202,5 +202,3 @@ with tab2:
     st.subheader("CANTIDAD DE VIVIENDAS UBICADAS EN VILLAS EMERGENCIA POR AGLOMERADO")
 
 
-
-    mask = 
