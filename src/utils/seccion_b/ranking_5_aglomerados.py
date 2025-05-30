@@ -1,11 +1,12 @@
 import csv
+import pandas as pd
 #EJERCICIO 4 SECCION B
 INDEX_CANT_MIEMBROS = "IX_TOT" #
 INDEX_NIVEL_ED = "NIVEL_ED" #
 INDEX_AGLOMERADO = "AGLOMERADO" #
 INDEX_PONDERACION = "PONDERA" #9
 def rankin(individuos,hogar):
-    with open(individuos,"r") as archivoInd:
+    with open(individuos) as archivoInd:
         csv_reader = csv.DictReader(archivoInd, delimiter=";")
         # recorro el archivo de individuos y guardando en un diccionario el nivel educativo de cada codigo de usuario en una clave llamada "nivel"
         diccionarioIND = {}
@@ -14,7 +15,7 @@ def rankin(individuos,hogar):
             diccionarioIND[cod] =  line[INDEX_NIVEL_ED]
         # diccionario cargado
     
-    with open( hogar,"r") as archivoHogar:
+    with open( hogar) as archivoHogar:
         csv_reader = csv.DictReader(archivoHogar, delimiter=";")
         #print("columnas ", csv_reader.fieldnames)
     # me guarde en variables cuerpoIND y cuerpoHOG los archivos en modo csv para luego recorrerlos
@@ -49,11 +50,10 @@ def rankin(individuos,hogar):
         #en rank5 queda almacenada una lista ordenada
         rank5 = sorted(ListaPorcentaje, key=lambda x:x[1],reverse=True)[:5]
                 #ordena = la lista por clave, x: x[1] (es el porcentaje), de mayor a menor y los primeros 5
-        print("RANKIN DE LOS 5 AGLOMERADOS QUE CUMPLEN")
-        i = 1
-        for aglo, porc in rank5:
-            print(f"{i}°  : {aglo} con porcentaje de {porc:.2f} %")
-            i+=1
+
+        # Retornar como DataFrame
+        df_rank = pd.DataFrame(rank5, columns=["Aglomerado", "Porcentaje"])
+        return df_rank
 
                 
 
