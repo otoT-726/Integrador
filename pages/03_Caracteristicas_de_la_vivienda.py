@@ -5,6 +5,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from pathlib import Path
 
+from src.utils.parte_2.P4.porcentaje_condicion_habitabilidad import retornar_informacion_habitabilidad
+from src.utils.parte_2.P4.porcentaje_villas import retornar_informacion_villas
 from src.utils.parte_2.P4.porcentaje_pisos import retornar_informacion_pisos
 from src.utils.parte_2.P4.porcentaje_baños import retornar_informacion_baños
 from src.utils import rutas
@@ -201,4 +203,21 @@ with tab2:
 
     st.subheader("CANTIDAD DE VIVIENDAS UBICADAS EN VILLAS EMERGENCIA POR AGLOMERADO")
 
+    
+    resultado = retornar_informacion_villas(archivo_hogares)
 
+    st.write(resultado)
+
+    st.divider()
+    
+    #Punto 1.4.7: Informar para cada aglomerado el porcentaje de viviendas por CONDICION_DE_HABITABILIDAD.
+    #Además de informarse debe poder exportarse a un CSV los resultados.
+
+    st.subheader("PORCENTAJE DE VIVIENDAS AGRUPADAS POR CONDICION DE HABITABILIDAD POR AGLOMERADO")
+
+    resultado = retornar_informacion_habitabilidad(archivo_hogares)
+    
+    st.write(resultado)
+
+    if st.button("Exportar datos a archivo CSV"):
+        resultado.to_csv("archivo_condicion_habitabilidad.csv")
