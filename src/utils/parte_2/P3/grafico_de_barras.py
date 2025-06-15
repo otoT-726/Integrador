@@ -5,7 +5,11 @@ También se debe validar que el año se encuentre entre los cuales se tiene info
 #1
 
 from src.utils.rutas import data_path
-from src.utils.seccion_b.primer_ultimo_trim_ano import min_fecha, max_fecha
+from src.utils.seccion_b.primer_ultimo_trim_ano import primerUltimoTrimAno
+min_fecha, max_fecha = primerUltimoTrimAno(data_path / "archivo_individuos.txt")
+
+
+import streamlit as st
 import pandas as pd
 import sys
 from pathlib import Path
@@ -15,6 +19,7 @@ import matplotlib.pyplot as plt
 sys.path.append(str(Path(__file__).resolve().parents[1] / 'src'))
 
 def obtener_grupo_edad(edad):
+    #¿QUE EDAD TIENE?
     if pd.isnull(edad):
         return "Desconocido"
     elif edad >= 0 and edad < 10:
@@ -42,29 +47,31 @@ def obtener_grupo_edad(edad):
 
 
 index_trimestre = "TRIMESTRE"
-index_anio = "ANIO"
+index_anio = "ANO4"
 index_genero = "CH04str"
 index_edad = "CH06"
 index_pondera = "PONDERA"
 
 
 archivo_individuos = data_path / "archivo_individuos.txt"   
-def generar_barras(archivo=archivo_individuos):
+def generar_barras(info,años_trimestres, archivo=archivo_individuos):
+
     diccionarioDecadasMasc = {}
     diccionarioDecadasFem = {}
+
     #validar informacion ingresada por el usuario
-    anio = int(input("Ingrese el año (entre 2010 y 2023): "))
-    trimestre = int(input("Ingrese el trimestre (1, 2, 3 o 4): "))
-    conjunto = (anio, trimestre)
-    if conjunto > min_fecha and conjunto < max_fecha:
-        # Filtrar los datos por año y trimestre
-        print("Los datos ingresados por el usuario son validos")
+    info = info.split(",")  # Separar el año y trimestre por coma
+    anio = int(info[0])
+    trimestre =int(info[1])
+
+    if (anio, trimestre) in años_trimestres:
+        # Filtrar los datos por año y trimestre 
         data = pd.read_csv(archivo, sep=";")
         # Son mis dos estructuras de datos donde esta la informacion filtrada por anio y trimestre
         data_masculina = (data[(data[index_anio] == anio) & (data[index_trimestre] == trimestre) & (data[index_genero] == 'Masculino')])
         data_femenina = (data[(data[index_anio] == anio) & (data[index_trimestre] == trimestre) & (data[index_genero] == 'Femenino')])  
 
-# Aca se aplica la funcion para obtener el grupo de edad a cada edad obtenida del dataframe y se la guarda en una nueva columna llamada 'grupo_edad'
+# Aca se aplica la funcion obtener_grupo_edad a cada edad obtenida del dataframe y se la guarda en una nueva columna llamada 'grupo_edad'
         data_masculina['grupo_edad'] = data_masculina[index_edad].apply(obtener_grupo_edad)
         data_femenina['grupo_edad'] = data_femenina[index_edad].apply(obtener_grupo_edad)   
 
@@ -77,19 +84,4 @@ def generar_barras(archivo=archivo_individuos):
 # SE ASEGURA QUE CADA GRUPO DE EDAD TENGA UN VALOR, SI NO EXISTE SE ASIGNA 0, Esto es para que si no hay datos de un grupo de edad, se muestre como 0 en el grafico
         contar_masculino = [diccionarioDecadasMasc.get(grupo, 0) for grupo in listaGrupos]  
         contar_femenino = [diccionarioDecadasFem.get(grupo, 0) for grupo in listaGrupos]
-
-        x = np.arange(len(listaGrupos))
-        ancho = 0.4
-
-        fig, ax = plt.subplots(figsize=(10, 6))
-        ax.bar(x - ancho/2, contar_masculino, width=ancho, label='Masculino', color='skyblue')
-        ax.bar(x + ancho/2, contar_femenino, width=ancho, label='Femenino', color='lightpink')
-
-        ax.set_xlabel('Grupo de edad (años)')
-        ax.set_ylabel('Población ponderada')
-        ax.set_title(f'Distribución por edad y sexo - Año {anio}, Trimestre {trimestre}')
-        ax.set_xticks(x)
-        ax.set_xticklabels(listaGrupos)
-        ax.legend()
-        plt.tight_layout()
-        plt.show()
+    return contar_masculino, contar_femenino
