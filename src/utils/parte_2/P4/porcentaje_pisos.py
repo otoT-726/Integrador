@@ -12,9 +12,9 @@ def calcular_porcentajes(data):
     segundo_material = data.loc[data['IV3'] == 2, 'PONDERA'].sum() / total * 100
     tercer_material = data.loc[data['IV3'] == 3, 'PONDERA'].sum() / total * 100
     return pd.Series({
-        '% Cerámica': round(primer_material, 2),
-        '% Pisos de ladrillo': round(segundo_material, 2),
-        '% Piso de tierra': round(tercer_material, 2)
+        '% Pisos de óptima calidad': round(primer_material, 2),
+        '% Cemento/ Ladrillo fijo': round(segundo_material, 2),
+        '% Tierra/ Ladrillo suelto': round(tercer_material, 2)
     })
 
 def retornar_informacion_pisos(data):
