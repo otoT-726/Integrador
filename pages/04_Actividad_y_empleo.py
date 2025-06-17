@@ -8,9 +8,7 @@ from src.utils.parte_2.P5.desocupadas_estudios import mostrar_desocupadas_estudi
 from src.utils.parte_2.P5.porcentaje_estatal import retornar_informacion_trabajadores
 
 
-# !!
-# REVISAR NOMBRES Y FILTROS. Aparecen los codigos de los aglomerados crudos, los nombres de los dataframes tambien y aparecen trimestres que no están.
-
+# Página de Actividad y Empleo
 mostrar_desocupadas_estudios()
 
 # Ruta al archivo
