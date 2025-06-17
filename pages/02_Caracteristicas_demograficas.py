@@ -58,6 +58,8 @@ with tab1:
     # las agrupo por el aglomerado y calculo la media
     # que el numero que se muestre como promedio sea un numero con 0 decimales
     promedio = promedio.round(0).astype(int)
+    # cambiar el nombre de la columna para que sea mas entendible
+    promedio = promedio.rename("EDAD PROMEDIO")
     st.write(promedio)
     
     st.divider()
