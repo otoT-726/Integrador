@@ -8,6 +8,7 @@ from src.utils.parte_2.P6.informar_cantidad_nivel_educativo import informar_cant
 from src.utils.parte_2.P6.grupos_etarios_nivel_ed import grupos_etarios
 from src.utils.seccion_b.ranking_5_aglomerados import rankin 
 from src.utils.seccion_b.analafabetos_mayores import mayoresA6
+from src.utils import diccionario_aglomerados
 
 #Archivo individuos
 archivo_individuos = data_path / "archivo_individuos.txt"
@@ -101,7 +102,8 @@ exportar = st.button("Exportar Ranking a CSV")
 
 if exportar:
     df_ranking = rankin(archivo_individuos, archivo_hogares)
-    df_ranking.index = df_ranking.index + 1 #Ajusto el índice para que empiece en 1 
+
+    #df_ranking.index = df_ranking.index + 1  # Ajustar el índice para que empiece en 1
 
     if not df_ranking.empty:
         st.write("Resultado del ranking:")

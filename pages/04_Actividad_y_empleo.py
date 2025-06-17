@@ -7,6 +7,7 @@ from src.utils.rutas import data_path
 from src.utils.parte_2.P5.desocupadas_estudios import mostrar_desocupadas_estudios
 from src.utils.parte_2.P5.porcentaje_estatal import retornar_informacion_trabajadores
 
+from src.utils import diccionario_aglomerados 
 
 # !!
 # REVISAR NOMBRES Y FILTROS. Aparecen los codigos de los aglomerados crudos, los nombres de los dataframes tambien y aparecen trimestres que no están.
@@ -17,20 +18,26 @@ mostrar_desocupadas_estudios()
 detalle_individuos = data_path / "archivo_individuos.txt"
 index_aglomerados = 'AGLOMERADO'
 
-# Cargamos aglomerados únicos
 df_individuos = pd.read_csv(detalle_individuos, sep=";")
-aglomerados_disponibles = sorted(df_individuos[index_aglomerados].unique().tolist())
-aglomerados_disponibles.insert(0, "Todo el país")  # Opción para todo el país
+
+# Filtramos los codigos de aglomerados que no son válidos que no están en el diccionario
+codigos_aglomerados = sorted(df_individuos[index_aglomerados].unique().tolist())
+codigos_aglomerados = [c for c in codigos_aglomerados if c in diccionario_aglomerados.keys()]
+
+# Agregamos el nombre del aglomerado al dataframe
+aglomerados_opciones = [(diccionario_aglomerados[c], c) for c in codigos_aglomerados]
+aglomerados_opciones.insert(0, ("Todo el país", None))
 
 # Título
 st.subheader("Gráfico de evolución del desempleo y empleo por aglomerado / país")
 st.write("Seleccione un aglomerado para ver la evolución del desempleo y empleo en el tiempo:")
 
 # Selector
-aglomerado_seleccionado = st.selectbox("Seleccione un aglomerado:", aglomerados_disponibles)
+nombre_aglomerado_seleccionado = st.selectbox("Seleccione un aglomerado:", options=[nombre for nombre, _ in aglomerados_opciones]
+)
 
-# Lógica para convertir a None si es “Todo el país”
-aglomerado_param = None if aglomerado_seleccionado == "Todo el país" else aglomerado_seleccionado
+# Obtener el código correspondiente (o None)
+aglomerado_param = dict(aglomerados_opciones)[nombre_aglomerado_seleccionado]
 
 # Obtener datos
 data_f = data_frame_empleo(aglomerado_param)
