@@ -55,7 +55,7 @@ st.divider()
 st.subheader("TIPOS DE TRABAJO")
 
 st.write("A continuacion se pueden visualizar los datos sobre el tipo de trabajo" \
-         " de los individuos en los distintos aglomerados abarcados por la EPH.")
+    " de los individuos en los distintos aglomerados abarcados por la EPH.")
 
 # Retorna un dataframe con el nombre del aglomerado, cantidad de personas con ocupacion, porcentaje
 # de trabajadores estatales, privados y de otros tipos. (Ordenados por cantidad de personas ocupadas)
