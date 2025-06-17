@@ -1,12 +1,17 @@
-from src.utils.parte_2.P5.desocupadas_estudios import mostrar_desocupadas_estudios
-
-mostrar_desocupadas_estudios()
-
 import streamlit as st
 import pandas as pd
 from pathlib import Path
+
 from src.utils.parte_2.P5.evolucion_desempleo import data_frame_empleo
 from src.utils.rutas import data_path
+from src.utils.parte_2.P5.desocupadas_estudios import mostrar_desocupadas_estudios
+from src.utils.parte_2.P5.porcentaje_estatal import retornar_informacion_trabajadores
+
+
+# !!
+# REVISAR NOMBRES Y FILTROS. Aparecen los codigos de los aglomerados crudos, los nombres de los dataframes tambien y aparecen trimestres que no están.
+
+mostrar_desocupadas_estudios()
 
 # Ruta al archivo
 detalle_individuos = data_path / "archivo_individuos.txt"
@@ -35,3 +40,18 @@ st.area_chart(
     data_f.set_index("PERIODO")[["tasa_empleo", "tasa_desempleo"]],
     use_container_width=True,
 )
+
+st.divider()
+
+# Punto 1.5.4: Informar para cada aglomerado el total de personas ocupadas, el porcentaje con
+# empleo estatal, el porcentaje con empleo privado y el porcentaje de otro tipo. Considerar la
+# ocupación principal.
+
+st.subheader("TIPOS DE TRABAJO")
+
+st.write("A continuacion se pueden visualizar los datos sobre el tipo de trabajo" \
+         " de los individuos en los distintos aglomerados abarcados por la EPH.")
+
+# Retorna un dataframe con el nombre del aglomerado, cantidad de personas con ocupacion, porcentaje
+# de trabajadores estatales, privados y de otros tipos. (Ordenados por cantidad de personas ocupadas)
+st.write(retornar_informacion_trabajadores(df_individuos))
