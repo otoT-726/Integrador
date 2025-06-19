@@ -1,5 +1,7 @@
 import csv
 import pandas as pd
+from src.utils import diccionario_aglomerados
+
 #EJERCICIO 4 SECCION B
 INDEX_CANT_MIEMBROS = "IX_TOT" #
 INDEX_NIVEL_ED = "NIVEL_ED" #
@@ -45,15 +47,18 @@ def rankin(individuos,hogar):
         for codigos in dicTotal.keys() : # voy a recorrer el diccionario de totales por claves
             if codigos in dicAglomerado: # busco el codigo del diccionario total, en el diccionario que cumplen
                 porcentaje = ((dicAglomerado[codigos])/dicTotal[codigos] * 100) # el valor que guardare en mi lista de porcentajes
-                ListaPorcentaje.append((codigos,porcentaje))
+                ListaPorcentaje.append((diccionario_aglomerados[int(codigos)],porcentaje))
 
-        #en rank5 queda almacenada una lista ordenada
+                #en rank5 queda almacenada una lista ordenada
         rank5 = sorted(ListaPorcentaje, key=lambda x:x[1],reverse=True)[:5]
-                #ordena = la lista por clave, x: x[1] (es el porcentaje), de mayor a menor y los primeros 5
 
         # Retornar como DataFrame
         df_rank = pd.DataFrame(rank5, columns=["Aglomerado", "Porcentaje"])
+        #df_rank = df_rank.rename(index = diccionario_aglomerados)
+
+
         return df_rank
+
 
                 
 
