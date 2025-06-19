@@ -14,3 +14,6 @@ Pasos para ejecutar el programa.
 
 
 -Por ultimo para iniciar la página de Streamlit ingrese el siguiente codigo en la consola: 'streamlit run Inicio.py'.
+
+
+Nota: Una vez abierta la página de streamlit, los gráficos se visualizan demasiado grandes. Tocando F5, o volviendo a cargar la página los gráficos quedan en tamaño óptimo. No sabemos a que se debe. Gracias por la comprensión!
