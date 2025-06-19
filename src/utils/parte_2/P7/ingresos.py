@@ -2,6 +2,7 @@ from src.utils.rutas import data_path
 import pandas as pd
 import streamlit as st
 import matplotlib.pyplot as plt
+from src.utils.rutas import data_path
 
 def debajo_de_lineas():
     #anoto los trimestres, 1, con sus respectivos meses
@@ -26,11 +27,11 @@ def debajo_de_lineas():
     if mostrar:
         
         #filtro los hogares con ITF Y CANTIDAD DE PERSONAS A 4.
-        filtro_hogares = (df_hogares["ITF"] > 0) & (df_hogares["IX_TOT"] == 4) & (df_hogares["ANO4"] == ano) & (df_hogares["TRIMESTRE"] == trimestre)
+        filtro_hogares = (df_hogares[" "] > 0) & (df_hogares["IX_TOT"] == 4) & (df_hogares["ANO4"] == ano) & (df_hogares["TRIMESTRE"] == trimestre)
         df_hogares_filtrado = df_hogares[filtro_hogares]
         
         #cargo el archivo de canasta basica
-        arch_canasta = 'valores-canasta-basica-alimentos-canasta-basica-total-mensual-2016.csv'
+        arch_canasta = data_path / 'valores-canasta-basica-alimentos-canasta-basica-total-mensual-2016.csv'
         df_canasta = pd.read_csv(arch_canasta)
 
         df_canasta['indice_tiempo'] = pd.to_datetime(df_canasta['indice_tiempo'])
