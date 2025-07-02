@@ -1,8 +1,6 @@
 import streamlit as st
 import pandas as pd
 from pathlib import Path
-import folium
-from streamlit_folium import st_folium
 
 
 from src.utils.parte_2.P5.evolucion_desempleo import data_frame_empleo
