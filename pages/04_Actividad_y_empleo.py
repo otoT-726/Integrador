@@ -1,7 +1,8 @@
 import streamlit as st
 import pandas as pd
 from pathlib import Path
-
+import folium
+from streamlit_folium import st_folium
 
 from src.utils.parte_2.P5.evolucion_desempleo import data_frame_empleo
 from src.utils.rutas import data_path
@@ -19,17 +20,8 @@ mostrar_desocupadas_estudios()
 # Ruta al archivo
 detalle_individuos = data_path / "archivo_individuos.txt"
 index_aglomerados = 'AGLOMERADO'
-# Definimos los años y trimestres máximos y mínimos
-min_fecha = primerUltimoTrimAno(detalle_individuos)[0]
-aniomin, trimmin = min_fecha[0], min_fecha[1]
-max_fecha = primerUltimoTrimAno(detalle_individuos)[1]
-aniomax, trimmax = max_fecha[0], max_fecha[1]
-
 
 df_individuos = pd.read_csv(detalle_individuos, sep=";")
-
-tasas_iniciales = calcular_tasas_por_aglomerado(df_individuos, aniomax, trimmax)
-tasas_finales = calcular_tasas_por_aglomerado(df_individuos, aniomin, trimmin)
 
 aglomerados_disponibles = sorted(df_individuos[index_aglomerados].unique().tolist())
 aglomerados_disponibles.insert(0, "Todo el país")  # Opción para todo el país
@@ -77,9 +69,19 @@ st.write("A continuacion se pueden visualizar los datos sobre el tipo de trabajo
 st.write(retornar_informacion_trabajadores(df_individuos))
 
 st.divider()
+# Punto 1.5.5:
 st.write("A continuacion se pueden visualizar las tasas de empleo y desempleo por aglomerado")
 # Mostrar tasas de empleo y desempleo por aglomerado
 st.subheader("Tasas de empleo y desempleo por aglomerado")
+
+# Definimos los años y trimestres máximos y mínimos
+min_fecha = primerUltimoTrimAno(detalle_individuos)[0]
+aniomin, trimmin = min_fecha[0], min_fecha[1]
+max_fecha = primerUltimoTrimAno(detalle_individuos)[1]
+aniomax, trimmax = max_fecha[0], max_fecha[1]
+# Definimos las tasas iniciales y finales
+tasas_iniciales = calcular_tasas_por_aglomerado(df_individuos, aniomax, trimmax)
+tasas_finales = calcular_tasas_por_aglomerado(df_individuos, aniomin, trimmin)
 
 df_inicio = pd.DataFrame(tasas_iniciales)
 df_final = pd.DataFrame(tasas_finales)
@@ -102,8 +104,6 @@ for cod, datos in dic_coordenadas.items():
         "Latitud": datos["coordenadas"][0],
         "Longitud": datos["coordenadas"][1]
     })
-
-
 
 
 df_coordenadas = pd.DataFrame(lista_coordenadas)

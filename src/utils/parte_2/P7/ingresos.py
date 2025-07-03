@@ -3,7 +3,7 @@ import pandas as pd
 import streamlit as st
 import matplotlib.pyplot as plt
 from src.utils.rutas import data_path
-
+#1.7 (P7) Ingresos
 def debajo_de_lineas():
     #anoto los trimestres, 1, con sus respectivos meses
     #esto es para poder filtrar los datos por trimestre
@@ -27,7 +27,7 @@ def debajo_de_lineas():
     if mostrar:
         
         #filtro los hogares con ITF Y CANTIDAD DE PERSONAS A 4.
-        filtro_hogares = (df_hogares[" "] > 0) & (df_hogares["IX_TOT"] == 4) & (df_hogares["ANO4"] == ano) & (df_hogares["TRIMESTRE"] == trimestre)
+        filtro_hogares = (df_hogares["ITF"] > 0) & (df_hogares["IX_TOT"] == 4) & (df_hogares["ANO4"] == ano) & (df_hogares["TRIMESTRE"] == trimestre)
         df_hogares_filtrado = df_hogares[filtro_hogares]
         
         #cargo el archivo de canasta basica
