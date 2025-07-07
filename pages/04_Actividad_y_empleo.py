@@ -15,9 +15,11 @@ from src.utils.parte_2.P5.traer_coordenadas import extraer_coordenadas
 from src.utils import diccionario_aglomerados 
 
 # Página de Actividad y Empleo
+#Inciso 1.5.1
 mostrar_desocupadas_estudios()
 
 # Ruta al archivo
+#Inciso 1.5.2 y 1.5.3
 detalle_individuos = data_path / "archivo_individuos.txt"
 index_aglomerados = 'AGLOMERADO'
 
@@ -58,7 +60,6 @@ st.divider()
 # Punto 1.5.4: Informar para cada aglomerado el total de personas ocupadas, el porcentaje con
 # empleo estatal, el porcentaje con empleo privado y el porcentaje de otro tipo. Considerar la
 # ocupación principal.
-
 st.subheader("TIPOS DE TRABAJO")
 
 st.write("A continuacion se pueden visualizar los datos sobre el tipo de trabajo" \

@@ -14,6 +14,7 @@ from src.utils import diccionario_aglomerados
 archivo_individuos = data_path / "archivo_individuos.txt"
 archivo_hogares = data_path / "archivo_hogares.txt"
 
+#Inciso 1.6.1
 anio = st.number_input("Ingrese el año para el cual desea ver la cantidad de personas por nivel educativo:", min_value=2023, max_value=2024)
 
 if st.button("Grafico personas por nivel educativo"):
@@ -24,7 +25,7 @@ if st.button("Grafico personas por nivel educativo"):
         st.warning(f"No hay datos disponibles para el año {anio}.")
 
 st.divider()
-
+# Inciso 1.6.2
 # Definí los grupos etarios posibles
 todos_los_grupos = {
     "20-30": (20, 30),
@@ -93,6 +94,7 @@ else:
 
 st.divider()
 
+#Inciso 1.6.3
 st.subheader("Ranking de los 5 Aglomerados con mayor porcentaje de hogares con individuos con estudios universitarios o superiores finalizados") 
 
 #boton para exportar el ranking de los 5 aglomerados a un archivo CSV
@@ -121,7 +123,7 @@ if exportar:
         st.info("No se encontraron datos para calcular el ranking.")
         
 st.divider()
-
+#Inciso 1.6.4
 st.subheader("Alfabetismo en personas mayores de 6 años")
 
 archivo = archivo_individuos
