@@ -28,6 +28,7 @@ años_trimestres = (tuple([(int(año), int(trimestre)) for año in años for tri
 
 tab1, tab2 = st.tabs(["Información", "Visualización"])
 with tab1:
+#1.3.1
     st.title("Caracteristicas demograficas de la poblacion")
     st.subheader("En esta sección se visualizará información relacionada a las características demográficas de la población argentina según la EPH.")
     st.divider() 
@@ -40,6 +41,7 @@ with tab1:
     else:
         st.write("Ingrese un año y trimestre para generar el gráfico de barras.")
     st.divider()
+# 1.3.2
     st.write("1.2")
     ult_anio = max_fecha[0]
     ult_trim = max_fecha[1]
@@ -63,6 +65,7 @@ with tab1:
     st.write(promedio)
     
     st.divider()
+# 1.3.3
     st.write("1.3")
     st.write("En esta seccion se generará un gráfico que muestre la evolución de la dependencia demográfica para todos los años y trimestres del dataset.")
     st.write("Seleccione un aglomerado para mostrar la evolucion de la dependencia demografica para todos los años y trimestres del dataset")
@@ -76,6 +79,7 @@ with tab1:
     # 14 años y mayores de 65 (se asumen jubilados) respecto a la población en edad activa 
     # (15 a 64 años) multiplicado por 100.
     st.divider()
+# 1.3.4
     st.write("1.4")
     st.write("En esta seccion se informara para cada año y trimestre almacenado la media  y mediana edad de la poblacion")
 
@@ -84,6 +88,7 @@ with tab1:
     st.write(filtro)
 
 with tab2:
+# 1.3.1 (Grafico de barras)
     st.subheader("1.1")
     st.subheader("Grafico de barras de la poblacion por grupos de edad y sexo del año y trimestre ingresado")
     if boton:
@@ -121,6 +126,7 @@ with tab2:
             st.error("Hubo un error procesando los datos. Verifique que el formato sea correcto (ej. 2022, 3).")
             st.exception(e)
     st.divider()
+# 1.3.3 (Grafico de dependencia demografica)
     st.subheader("1.3")
     # voy a tomar todos los datos del dataset DEL AGLOMERADO ELEGIDO
     if opcion:

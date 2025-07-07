@@ -4,6 +4,8 @@ cada grupo de edad. Para ello se debe solicitar al usuario que ingrese un año y
 También se debe validar que el año se encuentre entre los cuales se tiene información.'''
 #1
 
+# 1.3.1
+
 from src.utils.rutas import data_path
 from src.utils.seccion_b.primer_ultimo_trim_ano import primerUltimoTrimAno
 min_fecha, max_fecha = primerUltimoTrimAno(data_path / "archivo_individuos.txt")
